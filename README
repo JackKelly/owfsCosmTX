@@ -3,3 +3,10 @@ Very simple script for sending data from a 1-wire network to Pachube.
 Requires owpython to be installed first: http://owfs.sourceforge.net/owpython.html
 
 No error handling!
+
+To use, you need to create a config.xml file in the following format:
+
+<config>
+  <apikey>YOUR PACHUBE API KEY</apikey>
+  <feed>YOUR PACHUBE FEED ID</feed>
+</config>
