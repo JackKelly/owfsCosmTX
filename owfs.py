@@ -2,7 +2,7 @@
 print "running..."
 import ow
 import time
-import sys
+import sys # for handling errors
 import urllib2 # for sending data to Pachube
 import json # for assembling JSON data for Pachube
 import xml.etree.ElementTree as ET # for loading config
@@ -38,7 +38,12 @@ def pushToPachube( sensor ):
     request = urllib2.Request('http://api.pachube.com/v2/feeds/'+FEED, data=jsonData)
     request.add_header('X-PachubeApiKey', API_KEY)
     request.get_method = lambda: 'PUT'
-    opener.open(request)
+    try:
+        opener.open(request)
+    except urllib2.URLError as reason:
+        sys.stderr.write("URL IO error: " + str(reason) + "\n")
+    except urllib2.HTTPError as reason:
+        sys.stderr.write("HTTP error: " + str(reason) + "\n")
 
 ##################
 
