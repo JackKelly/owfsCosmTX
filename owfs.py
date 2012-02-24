@@ -5,13 +5,15 @@ import time
 import sys
 import urllib2 # for sending data to Pachube
 import json # for assembling JSON data for Pachube
+import xml.etree.ElementTree as ET # for loading config
 
 #########################################
 #            CONSTANTS                  #
 #########################################
 
-API_KEY     = '' # Enter you Pachube API Key
-FEED        = '' # Enter your Pachube Feed number
+configTree = ET.parse("config.xml") # load config from config file
+API_KEY    = configTree.findtext("apikey") # Your Pachube API Key
+FEED       = configTree.findtext("feed")   # Your Pachube Feed number
 
 #########################################
 #        PUSH TO PACHUBE                #
