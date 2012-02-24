@@ -3,6 +3,42 @@ print "running..."
 import ow
 import time
 import sys
+import urllib2 # for sending data to Pachube
+import json # for assembling JSON data for Pachube
+
+#########################################
+#            CONSTANTS                  #
+#########################################
+
+API_KEY     = '' # Enter you Pachube API Key
+FEED        = '' # Enter your Pachube Feed number
+
+#########################################
+#        PUSH TO PACHUBE                #
+#########################################
+
+def pushToPachube( sensor ):
+    '''For sending a single reading to Pachube'''
+    # adapted from http://stackoverflow.com/a/111988
+    jsonData = json.dumps({
+                           "version":"1.0.0",
+                           "datastreams":[{
+                                           "id"           : sensor.r_address,
+                                           "current_value": sensor.temperature,
+                                           "unit": {
+                                                    "type"  : "conversionBasedUnits",
+                                                    "label" : "degrees C",
+                                                    "symbol": u"\u00B0C"}
+                                           }
+                                          ] 
+                           })
+    opener = urllib2.build_opener(urllib2.HTTPHandler)
+    request = urllib2.Request('http://api.pachube.com/v2/feeds/'+FEED, data=jsonData)
+    request.add_header('X-PachubeApiKey', API_KEY)
+    request.get_method = lambda: 'PUT'
+    opener.open(request)
+
+##################
 
 ow.init( 'u' )
 
@@ -24,10 +60,11 @@ for sensor in sensors:
 print "\n",
 
 # Print temperatures
-while 1==1:
+while True:
     print int(time.time()), "\t",
     for sensor in sensors:
         print sensor.temperature, "\t",
+        pushToPachube(sensor)
         sys.stdout.flush()
     print "\n",
     sys.stdout.flush()

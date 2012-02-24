@@ -1,1 +1,3 @@
 *.dat
+.project
+.pydevproject

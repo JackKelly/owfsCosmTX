@@ -1,0 +1,5 @@
+Very simple script for sending data from a 1-wire network to Pachube.
+
+Requires owpython to be installed first: http://owfs.sourceforge.net/owpython.html
+
+No error handling!
