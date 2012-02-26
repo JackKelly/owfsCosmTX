@@ -28,8 +28,8 @@ def pushToPachube( sensor ):
                                            "id"           : sensor.r_address,
                                            "current_value": sensor.temperature,
                                            "unit": {
-                                                    "type"  : "conversionBasedUnits",
-                                                    "label" : "degrees C",
+                                                    "type"  : "derivedSI",
+                                                    "label" : "degree Celsius",
                                                     "symbol": u"\u00B0C"}
                                            }
                                           ] 
