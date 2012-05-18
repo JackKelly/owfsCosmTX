@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/python
 print "running..."
 import ow
 import time
