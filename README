@@ -1,12 +1,13 @@
-Very simple script for sending data from a 1-wire network to Pachube.
+Very simple script for sending data from a 1-wire network to Cosm
+(formerly Pachube).
 
 Requires owpython to be installed first: http://owfs.sourceforge.net/owpython.html
 
-No error handling!
+And also requires my little cosmSender module: https://github.com/JackKelly/cosmSender
 
 To use, you need to create a config.xml file in the following format:
 
 <config>
-  <apikey>YOUR PACHUBE API KEY</apikey>
-  <feed>YOUR PACHUBE FEED ID</feed>
+  <apikey>YOUR COSM API KEY</apikey>
+  <feed>YOUR COSM FEED ID</feed>
 </config>
