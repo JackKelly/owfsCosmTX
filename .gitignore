@@ -2,3 +2,4 @@
 .project
 .pydevproject
 config.xml
+*.txt

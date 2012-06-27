@@ -63,3 +63,5 @@ while True:
     print "\n",
     sys.stdout.flush()
     time.sleep(60)
+
+c.flush()
